@@ -8,7 +8,7 @@ import com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities.Article
 import com.caesar_84.noblypostestapp.mainscreen.backstage.presenter.MainScreenPresenter
 
 class MainScreen : NoblyPosTestAppBaseActivity(), MainScreenContract.View {
-    lateinit var mPresenter: MainScreenPresenter
+    protected lateinit var mPresenter: MainScreenPresenter
 
     override fun init(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_main_screen)

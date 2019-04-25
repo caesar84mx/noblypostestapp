@@ -2,13 +2,16 @@ package com.caesar_84.noblypostestapp.mainscreen.backstage.presenter
 
 import com.caesar_84.noblypostestapp.commons.mvpabstracts.presenter.BasePresenter
 import com.caesar_84.noblypostestapp.mainscreen.MainScreenContract
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities.Article
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.network.ArticlesApiClient
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesDao
+import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesCacheRepository
 
 class MainScreenPresenter: BasePresenter<MainScreenContract.View>(), MainScreenContract.Presenter {
-    lateinit var mApiClient: ArticlesApiClient
-    lateinit var mArticlesDao: ArticlesDao
+    protected lateinit var mApiClient: ArticlesApiClient
+    protected lateinit var mArticlesCacheRepository: ArticlesCacheRepository
+
+//    init {
+//        NoblyPosTestApplication.getInjector().inject(this)
+//    }
 
     override fun presentScreen() {
         retrieveAndShowArticles()
@@ -27,8 +30,12 @@ class MainScreenPresenter: BasePresenter<MainScreenContract.View>(), MainScreenC
 
              if (articles.isNotEmpty()) {
                  view?.showArticles(articles)
-                 cacheNews(articles)
+                 mArticlesCacheRepository.cacheNews(articles)
              } else {
+                 view?.showErrorMessage(
+                         "Error",
+                         "An error occurred on retrieveing new articles"
+                 )
                  view?.showListEmpty()
              }
         } else {
@@ -36,7 +43,7 @@ class MainScreenPresenter: BasePresenter<MainScreenContract.View>(), MainScreenC
             view?.showErrorMessage(
                 "No Connection",
                 "Internet connection could not be established. Please, check your network settings")
-            val articles = mArticlesDao.getCachedNews()
+            val articles = mArticlesCacheRepository.getCachedNews()
 
             if (articles.isNotEmpty()) {
                view?.showArticles(articles)
@@ -44,11 +51,6 @@ class MainScreenPresenter: BasePresenter<MainScreenContract.View>(), MainScreenC
                 view?.showListEmpty()
             }
         }
-    }
-
-    private fun cacheNews(articles: List<Article>) {
-        mArticlesDao.wipeOldCache()
-        mArticlesDao.cacheNews(articles)
     }
 
     private fun isConnectionAvailable(): Boolean {
