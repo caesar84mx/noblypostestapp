@@ -6,16 +6,20 @@ import android.view.Menu
 import android.view.View
 import com.caesar_84.noblypostestapp.R
 import com.caesar_84.noblypostestapp.commons.NoblyPosTestAppBaseActivity
+import com.caesar_84.noblypostestapp.commons.NoblyPosTestApplication
 import com.caesar_84.noblypostestapp.mainscreen.MainScreenContract
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities.Article
 import com.caesar_84.noblypostestapp.mainscreen.backstage.presenter.MainScreenPresenter
 import kotlinx.android.synthetic.main.activity_main_screen.*
+import javax.inject.Inject
 
 class MainScreen : NoblyPosTestAppBaseActivity(), MainScreenContract.View {
+    @Inject
     protected lateinit var mPresenter: MainScreenPresenter
 
     override fun init(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_main_screen)
+        NoblyPosTestApplication.getInstance().injector.inject(this)
         mPresenter.attachView(this)
         mPresenter.presentScreen()
     }

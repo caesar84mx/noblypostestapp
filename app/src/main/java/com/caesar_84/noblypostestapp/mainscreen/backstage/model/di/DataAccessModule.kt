@@ -25,9 +25,5 @@ open class DataAccessModule(context: Context) {
 
     @Provides
     @Singleton
-    open fun providesArticlesDao(): ArticlesDao = database.getArticlesDao()
-
-    @Provides
-    @Singleton
     fun providesArticlesRepository(dao: ArticlesDao) = ArticlesCacheRepository(dao)
 }

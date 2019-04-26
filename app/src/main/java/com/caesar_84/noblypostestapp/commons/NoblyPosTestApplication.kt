@@ -3,6 +3,7 @@ package com.caesar_84.noblypostestapp.commons
 import android.app.Application
 import com.caesar_84.noblypostestapp.commons.di.AppComponent
 import com.caesar_84.noblypostestapp.commons.di.DaggerAppComponent
+import com.caesar_84.noblypostestapp.mainscreen.backstage.di.MainScreenModule
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.di.DataAccessModule
 
 class NoblyPosTestApplication : Application() {
@@ -13,8 +14,9 @@ class NoblyPosTestApplication : Application() {
         super.onCreate()
 
         injector = DaggerAppComponent.builder()
-                .dataAccessModule(DataAccessModule(this))
-                .build()
+            .dataAccessModule(DataAccessModule(this))
+            .mainScreenModule(MainScreenModule())
+            .build()
 
         INSTANCE = this
     }

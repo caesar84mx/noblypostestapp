@@ -1,17 +1,19 @@
 package com.caesar_84.noblypostestapp.mainscreen.backstage.presenter
 
+import com.caesar_84.noblypostestapp.commons.NoblyPosTestApplication
 import com.caesar_84.noblypostestapp.commons.mvpabstracts.presenter.BasePresenter
 import com.caesar_84.noblypostestapp.mainscreen.MainScreenContract
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.network.ArticlesApiClient
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesCacheRepository
+import javax.inject.Inject
 
 class MainScreenPresenter: BasePresenter<MainScreenContract.View>(), MainScreenContract.Presenter {
     protected lateinit var mApiClient: ArticlesApiClient
-    protected lateinit var mArticlesCacheRepository: ArticlesCacheRepository
+    @Inject protected lateinit var mArticlesCacheRepository: ArticlesCacheRepository
 
-//    init {
-//        NoblyPosTestApplication.getInjector().inject(this)
-//    }
+    init {
+        NoblyPosTestApplication.getInstance().injector.inject(this)
+    }
 
     override fun presentScreen() {
         retrieveAndShowArticles()
