@@ -2,6 +2,7 @@ package com.caesar_84.noblypostestapp.mainscreen.backstage.model.di
 
 import android.arch.persistence.room.Room
 import android.content.Context
+import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesCacheRepository
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesDao
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesDatabase
 import dagger.Module
@@ -26,7 +27,7 @@ open class DataAccessModule(context: Context) {
     @Singleton
     open fun providesArticlesDao(): ArticlesDao = database.getArticlesDao()
 
-//    @Provides
-//    @Singleton
-//    fun providesArticlesRepository(dao: ArticlesDao) = ArticlesCacheRepository(dao)
+    @Provides
+    @Singleton
+    fun providesArticlesRepository(dao: ArticlesDao) = ArticlesCacheRepository(dao)
 }
