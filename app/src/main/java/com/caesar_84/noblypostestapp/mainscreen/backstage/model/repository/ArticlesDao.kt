@@ -15,5 +15,5 @@ interface ArticlesDao {
     fun deleteAll()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun save(articles: List<Article>)
+    fun save(articles: List<Article>): LongArray
 }

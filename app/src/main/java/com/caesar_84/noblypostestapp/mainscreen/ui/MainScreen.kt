@@ -1,5 +1,7 @@
 package com.caesar_84.noblypostestapp.mainscreen.ui
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.view.Menu
@@ -29,16 +31,19 @@ class MainScreen : NoblyPosTestAppBaseActivity(), MainScreenContract.View {
         return true
     }
 
+    override fun getConnectivityManager() = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
     override fun showLoadingIndicator() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        runOnUiThread { flSpinner.visibility = View.VISIBLE }
     }
 
     override fun hideLoadingIndicator() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        runOnUiThread { flSpinner.visibility = View.VISIBLE }
     }
 
     override fun showArticles(articles: List<Article>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //TODO: implement
+        rvArticlesList.visibility = View.VISIBLE
     }
 
     override fun showErrorMessage(title: String, message: String) {
@@ -50,9 +55,9 @@ class MainScreen : NoblyPosTestAppBaseActivity(), MainScreenContract.View {
             .show()
     }
 
-    override fun showListEmpty() {
+    override fun showListEmpty(isToBeShown: Boolean) {
         rvArticlesList.visibility = View.GONE
-        tvNoArticles.visibility = View.VISIBLE
+        tvNoArticles.visibility = if(isToBeShown) View.VISIBLE else View.GONE
     }
 
     override fun onDestroy() {

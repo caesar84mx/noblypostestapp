@@ -1,6 +1,5 @@
 package com.caesar_84.noblypostestapp.commons.di
 
-import com.caesar_84.noblypostestapp.mainscreen.backstage.di.MainScreenModule
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.di.DataAccessModule
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesCacheRepository
 import com.caesar_84.noblypostestapp.mainscreen.backstage.presenter.MainScreenPresenter

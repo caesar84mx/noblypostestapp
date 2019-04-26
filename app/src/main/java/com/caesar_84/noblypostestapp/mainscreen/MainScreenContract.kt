@@ -1,5 +1,6 @@
 package com.caesar_84.noblypostestapp.mainscreen
 
+import android.net.ConnectivityManager
 import com.caesar_84.noblypostestapp.commons.mvpabstracts.presenter.BaseMvpPresenter
 import com.caesar_84.noblypostestapp.commons.mvpabstracts.view.BaseView
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities.Article
@@ -14,6 +15,7 @@ interface MainScreenContract {
         fun showLoadingIndicator()
         fun hideLoadingIndicator()
         fun showErrorMessage(title: String, message: String)
-        fun showListEmpty()
+        fun showListEmpty(isToBeShown: Boolean)
+        fun getConnectivityManager(): ConnectivityManager
     }
 }

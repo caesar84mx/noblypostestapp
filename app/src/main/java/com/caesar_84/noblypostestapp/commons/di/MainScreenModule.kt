@@ -1,4 +1,4 @@
-package com.caesar_84.noblypostestapp.mainscreen.backstage.di
+package com.caesar_84.noblypostestapp.commons.di
 
 import com.caesar_84.noblypostestapp.mainscreen.backstage.presenter.MainScreenPresenter
 import dagger.Module

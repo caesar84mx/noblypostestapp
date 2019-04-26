@@ -11,21 +11,28 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "articles")
 data class Article(
         @PrimaryKey(autoGenerate = true)
-        var id: Int?,
+        val id: Int?,
 
         @ColumnInfo(name = "title")
-        var title: String? = null,
+        val title: String,
 
         @ColumnInfo(name = "image_url")
-        var imageUrl: String? = null,
+        val imageUrl: String,
 
         @ColumnInfo(name = "word_count")
-        var wordCount: Int = 0
+        val wordCount: Int = 0
 ) : Parcelable {
     @Ignore
     constructor(
-            title: String?,
-            imageUrl: String?,
+            title: String,
+            imageUrl: String,
             wordCount: Int
     ): this(null, title, imageUrl, wordCount)
+
+    @Ignore
+    constructor(responseItem: ResponseItem) : this(
+            responseItem.headline.main,
+            if (responseItem.multimedia.isEmpty()) "" else responseItem.multimedia[0].url,
+            responseItem.wordCount
+    )
 }
