@@ -12,26 +12,37 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:padding="3dp">
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:id="@+id/tvTitle"
-                tools:text="A great title to see he great the application is, so nobody will doubt that its creator must be hired at once"/>
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="italic"
-                android:gravity="center"
-                android:id="@+id/tvWordCount"
-                tools:text="125 words"/>
-
-        <ImageView android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
+        <ImageView android:layout_width="110dp"
+                   android:layout_height="110dp"
+                   android:layout_gravity="center"
                    android:id="@+id/ivAvatar"
                    tools:src="@drawable/ic_launcher_foreground"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="top"
+                android:padding="5dp">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/tvTitle"
+                    tools:text="A great title to see he great the application is, so nobody will doubt that its creator must be hired at once for 100500 $USD/day"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    android:gravity="center"
+                    android:id="@+id/tvWordCount"
+                    tools:text="125 words"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 </android.support.v7.widget.CardView>

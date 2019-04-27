@@ -30,9 +30,9 @@ data class Article(
     ): this(null, title, imageUrl, wordCount)
 
     @Ignore
-    constructor(responseItem: ResponseItem) : this(
-            responseItem.headline.main,
-            if (responseItem.multimedia.isEmpty()) "" else responseItem.multimedia[0].url,
-            responseItem.wordCount
+    constructor(doc: Doc) : this(
+            doc.headline.main,
+            if (doc.multimedia.isEmpty()) "" else doc.multimedia[0].url,
+            doc.wordCount
     )
 }

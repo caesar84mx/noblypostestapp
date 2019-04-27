@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
             android:id="@+id/miRefresh"
-            android:title="Refresh"
-            app:showAsAction="collapseActionView"
+            android:title="@string/refresh"
+            app:showAsAction="ifRoom"
             android:icon="@drawable/ic_refresh_light_48dp"/>
 </menu>

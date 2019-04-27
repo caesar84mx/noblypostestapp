@@ -6,7 +6,7 @@ import com.caesar_84.noblypostestapp.mainscreen.backstage.model.network.Articles
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesCacheRepository
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesDao
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesDatabase
-import com.caesar_84.noblypostestapp.mainscreen.utils.Constants
+import com.caesar_84.noblypostestapp.commons.utils.Constants
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

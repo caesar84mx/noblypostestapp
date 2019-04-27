@@ -16,7 +16,7 @@
                 android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:visibility="gone"
-                android:text="No articles are retrieved yet"
+                android:text="@string/there_are_no_articles_loaded"
                 android:id="@+id/tvNoArticles"/>
 
         <android.support.v7.widget.RecyclerView

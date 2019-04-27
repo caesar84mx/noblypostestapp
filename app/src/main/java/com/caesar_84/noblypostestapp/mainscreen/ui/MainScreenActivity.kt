@@ -4,7 +4,9 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.caesar_84.noblypostestapp.R
 import com.caesar_84.noblypostestapp.commons.NoblyPosTestAppBaseActivity
@@ -15,13 +17,17 @@ import com.caesar_84.noblypostestapp.mainscreen.backstage.presenter.MainScreenPr
 import kotlinx.android.synthetic.main.activity_main_screen.*
 import javax.inject.Inject
 
-class MainScreen : NoblyPosTestAppBaseActivity(), MainScreenContract.View {
+class MainScreenActivity : NoblyPosTestAppBaseActivity(), MainScreenContract.View {
     @Inject
     protected lateinit var mPresenter: MainScreenPresenter
 
+    private var articlesInfoAdapter: ArticlesInfoRvAdapter? = null
+
     override fun init(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_main_screen)
+
         NoblyPosTestApplication.getInstance().injector.inject(this)
+
         mPresenter.attachView(this)
         mPresenter.presentScreen()
     }
@@ -31,19 +37,38 @@ class MainScreen : NoblyPosTestAppBaseActivity(), MainScreenContract.View {
         return true
     }
 
-    override fun getConnectivityManager() = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            R.id.miRefresh -> {
+                mPresenter.refreshArticles()
+                true
+            }
 
-    override fun showLoadingIndicator() {
-        runOnUiThread { flSpinner.visibility = View.VISIBLE }
+            else -> false
+        }
     }
 
-    override fun hideLoadingIndicator() {
-        runOnUiThread { flSpinner.visibility = View.VISIBLE }
+    override fun getConnectivityManager() = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+    override fun showLoading(isToBeShown: Boolean) {
+        runOnUiThread {
+            flSpinner.visibility = if (isToBeShown) View.VISIBLE else View.GONE
+        }
+    }
+
+    override fun initArticlesInfoList() {
+        val viewManager = LinearLayoutManager(this)
+        articlesInfoAdapter = ArticlesInfoRvAdapter()
+
+        rvArticlesList.apply {
+            layoutManager = viewManager
+            adapter = articlesInfoAdapter
+        }
     }
 
     override fun showArticles(articles: List<Article>) {
-        //TODO: implement
         rvArticlesList.visibility = View.VISIBLE
+        articlesInfoAdapter?.setArticlesInfoList(articles)
     }
 
     override fun showErrorMessage(title: String, message: String) {
@@ -57,11 +82,19 @@ class MainScreen : NoblyPosTestAppBaseActivity(), MainScreenContract.View {
 
     override fun showListEmpty(isToBeShown: Boolean) {
         rvArticlesList.visibility = View.GONE
-        tvNoArticles.visibility = if(isToBeShown) View.VISIBLE else View.GONE
+        tvNoArticles.visibility = if (isToBeShown) View.VISIBLE else View.GONE
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mPresenter.detachView()
+    }
+
+    override fun getNoConnectionDialogTitle(): String {
+        return getString(R.string.no_connection_dialog_title)
+    }
+
+    override fun getNoConnectionDialogMessage(): String {
+        return getString(R.string.no_connection_dialog_message)
     }
 }

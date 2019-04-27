@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">NoblyPOS Test Application</string>
+    <string name="there_are_no_articles_loaded">There are no articles loaded</string>
+    <string name="words_count">%d words</string>
+    <string name="refresh">Refresh</string>
+    <string name="no_connection_dialog_title">No Connection</string>
+    <string name="no_connection_dialog_message">Internet connection could not be established. Please, check your network
+        settings
+    </string>
+    <string name="no_title">No Title</string>
 </resources>

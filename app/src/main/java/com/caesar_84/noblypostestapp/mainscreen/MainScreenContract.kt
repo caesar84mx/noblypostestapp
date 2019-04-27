@@ -12,10 +12,12 @@ interface MainScreenContract {
     }
     interface View: BaseView {
         fun showArticles(articles: List<Article>)
-        fun showLoadingIndicator()
-        fun hideLoadingIndicator()
+        fun showLoading(isToBeShown: Boolean)
         fun showErrorMessage(title: String, message: String)
         fun showListEmpty(isToBeShown: Boolean)
         fun getConnectivityManager(): ConnectivityManager
+        fun initArticlesInfoList()
+        fun getNoConnectionDialogTitle(): String
+        fun getNoConnectionDialogMessage(): String
     }
 }

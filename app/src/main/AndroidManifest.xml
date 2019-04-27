@@ -3,6 +3,7 @@
           package="com.caesar_84.noblypostestapp">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
             android:name=".commons.NoblyPosTestApplication"
@@ -13,7 +14,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".mainscreen.ui.MainScreen"
+        <activity android:name=".mainscreen.ui.MainScreenActivity"
                   android:label="NY Times News">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
