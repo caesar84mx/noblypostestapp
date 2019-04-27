@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Тестовое приложение NoblyPOS</string>
+    <string name="hire">Мне нравится</string>
+    <string name="later">Позже</string>
+    <string name="no_connection_dialog_message">Не удалось установить соединение с сетью. Пожалуйста, проверьте сетевые
+        настройки
+    </string>
+    <string name="no_connection_dialog_title">Нет соединения</string>
+    <string name="no_title">Без заголовка</string>
+    <string name="nope">Это мусор</string>
+    <string name="rateme_dialog_title">Не могли бы вы оценить приложение?</string>
+    <string name="refresh">Обновить</string>
+    <string name="there_are_no_articles_loaded">Нет загруженных статей</string>
+    <string name="words_count">%d слов</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Applicación de Prueba NoblyPOS</string>
+    <string name="hire">Me gusta</string>
+    <string name="later">Más tarde</string>
+    <string name="no_connection_dialog_message">No se ha podido establecer la conexión. Por favor, revisá tus ajustes de
+        conectividad
+    </string>
+    <string name="no_connection_dialog_title">No hay conexión</string>
+    <string name="no_title">Sin titular</string>
+    <string name="nope">¡Vasura!</string>
+    <string name="rateme_dialog_title">¿Podrías, por favor, calificar la aplicación?</string>
+    <string name="refresh">Actualizar</string>
+    <string name="there_are_no_articles_loaded">No hay artículos cargados</string>
+    <string name="words_count">%d palabras</string>
+</resources>
