@@ -8,4 +8,8 @@
         settings
     </string>
     <string name="no_title">No Title</string>
+    <string name="hire">I like it</string>
+    <string name="nope">It\'s a crap!</string>
+    <string name="later">Later</string>
+    <string name="rateme_dialog_title">Would you, please, rate the app?</string>
 </resources>

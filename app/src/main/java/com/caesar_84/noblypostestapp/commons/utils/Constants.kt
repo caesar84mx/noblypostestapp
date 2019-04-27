@@ -10,5 +10,9 @@ object Constants {
 
     object Configuration {
         const val APPLICATION_TAG = "NoblyPosTestApp"
+
+        object MainScreen {
+            const val ANSWER_KEY = "answer"
+        }
     }
 }
