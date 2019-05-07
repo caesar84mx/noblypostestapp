@@ -24,12 +24,13 @@ class MainScreenActivity : NoblyPosTestAppBaseActivity(), MainScreenContract.Vie
     private val nope = "nope"
     private val like = "like"
 
-    private var isNotDialogShowed = true
+    private var mIsNotDialogShowed = true
 
     @Inject
     protected lateinit var mPresenter: MainScreenPresenter
 
-    private var articlesInfoAdapter: ArticlesInfoRvAdapter? = null
+    private var mArticlesInfoAdapter: ArticlesInfoRvAdapter? = null
+    private var mMenu: Menu? = null
 
     override fun init(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_main_screen)
@@ -42,6 +43,7 @@ class MainScreenActivity : NoblyPosTestAppBaseActivity(), MainScreenContract.Vie
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
+        mMenu = menu
         return true
     }
 
@@ -91,18 +93,18 @@ class MainScreenActivity : NoblyPosTestAppBaseActivity(), MainScreenContract.Vie
                 } catch (ignore: Throwable) {
                 } finally {
                     saveAnswer(like)
-                    isNotDialogShowed = false
+                    mIsNotDialogShowed = false
                 }
             }
 
             setNegativeButton(R.string.nope) { dialog, _ ->
                 saveAnswer(nope)
-                isNotDialogShowed = false
+                mIsNotDialogShowed = false
                 dialog.dismiss()
             }
 
             setNeutralButton(R.string.later) { dialog, _ ->
-                isNotDialogShowed = false
+                mIsNotDialogShowed = false
                 dialog.dismiss()
             }
         }
@@ -113,7 +115,7 @@ class MainScreenActivity : NoblyPosTestAppBaseActivity(), MainScreenContract.Vie
     private fun isHiremeDialogApplicable(): Boolean {
         val answer = readAnswer()
 
-        return isNotDialogShowed && !(answer == nope || answer == like)
+        return mIsNotDialogShowed && !(answer == nope || answer == like)
     }
 
     private fun saveAnswer(answer: String) {
@@ -127,25 +129,33 @@ class MainScreenActivity : NoblyPosTestAppBaseActivity(), MainScreenContract.Vie
 
     override fun getConnectivityManager() = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-    override fun showLoading(isToBeShown: Boolean) {
+    override fun showLoading() {
         runOnUiThread {
-            flSpinner.visibility = if (isToBeShown) View.VISIBLE else View.GONE
+            mMenu?.findItem(R.id.miRefresh)?.isEnabled = false
+            flSpinner.visibility = View.VISIBLE
+        }
+    }
+
+    override fun hideLoading() {
+        runOnUiThread {
+            mMenu?.findItem(R.id.miRefresh)?.isEnabled = true
+            flSpinner.visibility = View.GONE
         }
     }
 
     override fun initArticlesInfoList() {
         val viewManager = LinearLayoutManager(this)
-        articlesInfoAdapter = ArticlesInfoRvAdapter()
+        mArticlesInfoAdapter = ArticlesInfoRvAdapter()
 
         rvArticlesList.apply {
             layoutManager = viewManager
-            adapter = articlesInfoAdapter
+            adapter = mArticlesInfoAdapter
         }
     }
 
     override fun showArticles(articles: List<Article>) {
         rvArticlesList.visibility = View.VISIBLE
-        articlesInfoAdapter?.setArticlesInfoList(articles)
+        mArticlesInfoAdapter?.setArticlesInfoList(articles)
     }
 
     override fun showErrorMessage(title: String, message: String) {
@@ -157,9 +167,13 @@ class MainScreenActivity : NoblyPosTestAppBaseActivity(), MainScreenContract.Vie
             .show()
     }
 
-    override fun showListEmpty(isToBeShown: Boolean) {
+    override fun showListEmpty() {
         rvArticlesList.visibility = View.GONE
-        tvNoArticles.visibility = if (isToBeShown) View.VISIBLE else View.GONE
+        tvNoArticles.visibility = View.VISIBLE
+    }
+
+    override fun hideListEmpty() {
+        tvNoArticles.visibility = View.GONE
     }
 
     override fun onDestroy() {

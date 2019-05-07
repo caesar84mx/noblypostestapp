@@ -2,14 +2,13 @@ package com.caesar_84.noblypostestapp.mainscreen.backstage.presenter
 
 import com.caesar_84.noblypostestapp.commons.NoblyPosTestApplication
 import com.caesar_84.noblypostestapp.commons.mvpabstracts.presenter.BasePresenter
-import com.caesar_84.noblypostestapp.mainscreen.MainScreenContract
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities.Article
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities.Doc
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.network.ArticlesApiClient
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesCacheRepository
 import com.caesar_84.noblypostestapp.commons.utils.DateHelper
 import com.caesar_84.noblypostestapp.commons.utils.LogHelper
+import com.caesar_84.noblypostestapp.mainscreen.MainScreenContract
+import com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities.Article
 import com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities.DataResponse
+import com.caesar_84.noblypostestapp.mainscreen.backstage.model.network.ArticlesApiClient
+import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesCacheRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,7 +27,7 @@ class MainScreenPresenter : BasePresenter<MainScreenContract.View>(), MainScreen
     }
 
     override fun presentScreen() {
-        view?.showListEmpty(true)
+        view?.showListEmpty()
         view?.initArticlesInfoList()
         retrieveAndShowArticles()
     }
@@ -40,7 +39,7 @@ class MainScreenPresenter : BasePresenter<MainScreenContract.View>(), MainScreen
     private fun retrieveAndShowArticles() {
         LogHelper.logToConsole("Retrieving articles")
 
-        view?.showLoading(true)
+        view?.showLoading()
 
         if (isNetworkAvailable()) {
             LogHelper.logToConsole("Making service call")
@@ -52,7 +51,7 @@ class MainScreenPresenter : BasePresenter<MainScreenContract.View>(), MainScreen
 
             val articles = mArticlesCacheRepository.getCachedNews()
 
-            view?.showLoading(false)
+            view?.hideLoading()
             view?.showErrorMessage(
                 view!!.getNoConnectionDialogTitle(),
                 view!!.getNoConnectionDialogMessage()
@@ -61,7 +60,7 @@ class MainScreenPresenter : BasePresenter<MainScreenContract.View>(), MainScreen
             if (articles.isNotEmpty()) {
                 LogHelper.logToConsole(articles)
 
-                view?.showListEmpty(false)
+                view?.hideListEmpty()
                 view?.showArticles(articles)
             }
         }
@@ -78,27 +77,36 @@ class MainScreenPresenter : BasePresenter<MainScreenContract.View>(), MainScreen
             LogHelper.logToConsole("Failed to retrieve data")
             LogHelper.logToConsole(t)
 
-            view?.showLoading(false)
+            val articles = mArticlesCacheRepository.getCachedNews()
+
+            view?.hideLoading()
             view?.showErrorMessage(
                 "Error",
                 "An error occurred while retrieving new articles"
             )
+
+            if (articles.isNotEmpty()) {
+                view?.hideListEmpty()
+                view?.showArticles(articles)
+            } else {
+                view?.showListEmpty()
+            }
         }
 
         override fun onResponse(call: Call<DataResponse>, response: Response<DataResponse>) {
             LogHelper.logToConsole("Data retrieve successful")
 
-            view?.showLoading(false)
+            view?.hideLoading()
             val responseItems = response.body()?.response?.docs ?: emptyList()
 
             if (responseItems.isNotEmpty()) {
                 val articles = responseItems.map { item -> Article(item) }
 
-                view?.showListEmpty(false)
+                view?.hideListEmpty()
                 view?.showArticles(articles)
                 mArticlesCacheRepository.cacheNews(articles)
             } else {
-                view?.showListEmpty(true)
+                view?.showListEmpty()
                 LogHelper.logToConsole("Empty list retrieved")
             }
         }
