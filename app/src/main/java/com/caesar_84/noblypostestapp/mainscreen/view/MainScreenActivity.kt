@@ -13,6 +13,7 @@ import android.view.MenuItem
 import com.caesar_84.noblypostestapp.R
 import com.caesar_84.noblypostestapp.commons.utils.Constants.Configuration.MainScreen.ANSWER_KEY
 import com.caesar_84.noblypostestapp.databinding.ActivityMainScreenBinding
+import com.caesar_84.noblypostestapp.mainscreen.adapter.ArticlesInfoRvAdapter
 import com.caesar_84.noblypostestapp.mainscreen.viewmodel.MainScreenViewModel
 
 class MainScreenActivity : AppCompatActivity() {

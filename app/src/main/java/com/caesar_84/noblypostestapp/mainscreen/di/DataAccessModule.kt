@@ -1,4 +1,4 @@
-package com.caesar_84.noblypostestapp.mainscreen.model.di
+package com.caesar_84.noblypostestapp.mainscreen.di
 
 import android.arch.persistence.room.Room
 import android.content.Context
