@@ -4,7 +4,7 @@ import android.app.Application
 import com.caesar_84.noblypostestapp.commons.di.AppComponent
 import com.caesar_84.noblypostestapp.commons.di.DaggerAppComponent
 import com.caesar_84.noblypostestapp.commons.di.MainScreenModule
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.di.DataAccessModule
+import com.caesar_84.noblypostestapp.mainscreen.model.di.DataAccessModule
 
 class NoblyPosTestApplication : Application() {
     lateinit var injector: AppComponent

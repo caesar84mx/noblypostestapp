@@ -1,7 +1,7 @@
-package com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository
+package com.caesar_84.noblypostestapp.mainscreen.model.repository
 
 import com.caesar_84.noblypostestapp.commons.NoblyPosTestApplication
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities.Article
+import com.caesar_84.noblypostestapp.mainscreen.model.entities.Article
 import javax.inject.Inject
 
 class ArticlesCacheRepository @Inject constructor(protected val dao: ArticlesDao) {

@@ -1,8 +1,8 @@
-package com.caesar_84.noblypostestapp.mainscreen.backstage.model.network
+package com.caesar_84.noblypostestapp.mainscreen.model.network
 
 import com.caesar_84.noblypostestapp.commons.utils.Constants.ApiService.API_KEY
 import com.caesar_84.noblypostestapp.commons.utils.Constants.ApiService.ARTICLES_SEARCH_ENDPOINT
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities.DataResponse
+import com.caesar_84.noblypostestapp.mainscreen.model.entities.DataResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

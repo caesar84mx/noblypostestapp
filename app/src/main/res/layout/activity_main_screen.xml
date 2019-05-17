@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout>
+    <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp"
-        android:orientation="vertical">
-    <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <TextView
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:orientation="vertical">
+        <android.support.design.widget.CoordinatorLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center_horizontal"
-                android:visibility="gone"
-                android:text="@string/there_are_no_articles_loaded"
-                android:id="@+id/tvNoArticles"/>
+                android:layout_height="match_parent">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:visibility="gone"
+                    android:text="@string/there_are_no_articles_loaded"
+                    android:id="@+id/tvNoArticles"/>
 
-        <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/rvArticlesList"
-                android:visibility="gone"
-                tools:visibility="gone"
-                tools:listitem="@layout/articles_list_item"/>
+            <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/rvArticlesList"
+                    android:visibility="gone"
+                    tools:visibility="gone"
+                    tools:listitem="@layout/articles_list_item"/>
 
-        <FrameLayout
-          android:id="@+id/flSpinner"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:background="#cc2e2e2e"
-          android:visibility="gone">
-            <ProgressBar
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center"/>
-        </FrameLayout>
-    </android.support.design.widget.CoordinatorLayout>
+            <FrameLayout
+                    android:id="@+id/flSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#cc2e2e2e"
+                    android:visibility="gone">
+                <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+            </FrameLayout>
+        </android.support.design.widget.CoordinatorLayout>
 
 
-</LinearLayout>
+    </LinearLayout>
+</layout>

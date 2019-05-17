@@ -1,8 +1,8 @@
-package com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository
+package com.caesar_84.noblypostestapp.mainscreen.model.repository
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities.Article
+import com.caesar_84.noblypostestapp.mainscreen.model.entities.Article
 
 @Database(entities = [Article::class], version = 1, exportSchema = false)
 abstract class ArticlesDatabase: RoomDatabase() {

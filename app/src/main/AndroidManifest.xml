@@ -14,7 +14,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".mainscreen.ui.MainScreenActivity"
+        <activity android:name=".mainscreen.view.MainScreenActivity"
                   android:label="NY Times News">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

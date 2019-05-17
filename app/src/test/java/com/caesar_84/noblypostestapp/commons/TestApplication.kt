@@ -3,7 +3,7 @@ package com.caesar_84.noblypostestapp.commons
 import android.app.Application
 import com.caesar_84.noblypostestapp.commons.di.DaggerTestComponent
 import com.caesar_84.noblypostestapp.commons.di.TestComponent
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.di.DataAccessModule
+import com.caesar_84.noblypostestapp.mainscreen.model.di.DataAccessModule
 
 class TestApplication: Application() {
     lateinit var injector: TestComponent

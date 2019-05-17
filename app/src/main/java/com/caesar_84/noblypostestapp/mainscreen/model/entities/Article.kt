@@ -1,4 +1,4 @@
-package com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities
+package com.caesar_84.noblypostestapp.mainscreen.model.entities
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity

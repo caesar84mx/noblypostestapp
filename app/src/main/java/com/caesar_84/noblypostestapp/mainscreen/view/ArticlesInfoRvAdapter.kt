@@ -1,4 +1,4 @@
-package com.caesar_84.noblypostestapp.mainscreen.ui
+package com.caesar_84.noblypostestapp.mainscreen.view
 
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.caesar_84.noblypostestapp.R
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities.Article
+import com.caesar_84.noblypostestapp.mainscreen.model.entities.Article
 import com.caesar_84.noblypostestapp.commons.utils.Constants
-import com.caesar_84.noblypostestapp.commons.utils.LogHelper
 import com.caesar_84.noblypostestapp.commons.utils.LogHelper.logToConsole
 import com.squareup.picasso.Picasso
 

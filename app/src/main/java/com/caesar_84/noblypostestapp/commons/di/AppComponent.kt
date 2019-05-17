@@ -1,9 +1,8 @@
 package com.caesar_84.noblypostestapp.commons.di
 
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.di.DataAccessModule
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesCacheRepository
-import com.caesar_84.noblypostestapp.mainscreen.backstage.presenter.MainScreenPresenter
-import com.caesar_84.noblypostestapp.mainscreen.ui.MainScreenActivity
+import com.caesar_84.noblypostestapp.mainscreen.model.di.DataAccessModule
+import com.caesar_84.noblypostestapp.mainscreen.model.repository.ArticlesCacheRepository
+import com.caesar_84.noblypostestapp.mainscreen.view.MainScreenActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -16,6 +15,5 @@ import javax.inject.Singleton
 @Singleton
 interface AppComponent {
     fun inject(articlesCacheRepository: ArticlesCacheRepository)
-    fun inject(mainScreenPresenter: MainScreenPresenter)
     fun inject(mainScreenActivity: MainScreenActivity)
 }

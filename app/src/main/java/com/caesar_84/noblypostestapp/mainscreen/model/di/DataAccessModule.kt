@@ -1,11 +1,11 @@
-package com.caesar_84.noblypostestapp.mainscreen.backstage.model.di
+package com.caesar_84.noblypostestapp.mainscreen.model.di
 
 import android.arch.persistence.room.Room
 import android.content.Context
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.network.ArticlesApiClient
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesCacheRepository
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesDao
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.repository.ArticlesDatabase
+import com.caesar_84.noblypostestapp.mainscreen.model.network.ArticlesApiClient
+import com.caesar_84.noblypostestapp.mainscreen.model.repository.ArticlesCacheRepository
+import com.caesar_84.noblypostestapp.mainscreen.model.repository.ArticlesDao
+import com.caesar_84.noblypostestapp.mainscreen.model.repository.ArticlesDatabase
 import com.caesar_84.noblypostestapp.commons.utils.Constants
 import dagger.Module
 import dagger.Provides

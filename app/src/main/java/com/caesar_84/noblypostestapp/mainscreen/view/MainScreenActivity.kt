@@ -1,44 +1,37 @@
-package com.caesar_84.noblypostestapp.mainscreen.ui
+package com.caesar_84.noblypostestapp.mainscreen.view
 
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import com.caesar_84.noblypostestapp.R
-import com.caesar_84.noblypostestapp.commons.NoblyPosTestAppBaseActivity
-import com.caesar_84.noblypostestapp.commons.NoblyPosTestApplication
 import com.caesar_84.noblypostestapp.commons.utils.Constants.Configuration.MainScreen.ANSWER_KEY
-import com.caesar_84.noblypostestapp.mainscreen.MainScreenContract
-import com.caesar_84.noblypostestapp.mainscreen.backstage.model.entities.Article
-import com.caesar_84.noblypostestapp.mainscreen.backstage.presenter.MainScreenPresenter
-import kotlinx.android.synthetic.main.activity_main_screen.*
-import javax.inject.Inject
+import com.caesar_84.noblypostestapp.databinding.ActivityMainScreenBinding
+import com.caesar_84.noblypostestapp.mainscreen.viewmodel.MainScreenViewModel
 
-class MainScreenActivity : NoblyPosTestAppBaseActivity(), MainScreenContract.View {
+class MainScreenActivity : AppCompatActivity() {
     private val nope = "nope"
     private val like = "like"
 
-    private var mIsNotDialogShowed = true
+    private lateinit var binding: ActivityMainScreenBinding
+    private lateinit var viewModel: MainScreenViewModel
 
-    @Inject
-    protected lateinit var mPresenter: MainScreenPresenter
+    private var mIsNotDialogShowed = true
 
     private var mArticlesInfoAdapter: ArticlesInfoRvAdapter? = null
     private var mMenu: Menu? = null
 
-    override fun init(savedInstanceState: Bundle?) {
-        setContentView(R.layout.activity_main_screen)
-
-        NoblyPosTestApplication.getInstance().injector.inject(this)
-
-        mPresenter.attachView(this)
-        mPresenter.presentScreen()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        DataBindingUtil.inflate<>()
+        binding = ActivityMainScreenBinding.inflate(layoutInflater)
+        viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(MainScreenViewModel::class.java)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -126,66 +119,4 @@ class MainScreenActivity : NoblyPosTestAppBaseActivity(), MainScreenContract.Vie
     }
 
     private fun readAnswer(): String? = getPreferences(Context.MODE_PRIVATE).getString(ANSWER_KEY, null) ?: null
-
-    override fun getConnectivityManager() = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-    override fun showLoading() {
-        runOnUiThread {
-            mMenu?.findItem(R.id.miRefresh)?.isEnabled = false
-            flSpinner.visibility = View.VISIBLE
-        }
-    }
-
-    override fun hideLoading() {
-        runOnUiThread {
-            mMenu?.findItem(R.id.miRefresh)?.isEnabled = true
-            flSpinner.visibility = View.GONE
-        }
-    }
-
-    override fun initArticlesInfoList() {
-        val viewManager = LinearLayoutManager(this)
-        mArticlesInfoAdapter = ArticlesInfoRvAdapter()
-
-        rvArticlesList.apply {
-            layoutManager = viewManager
-            adapter = mArticlesInfoAdapter
-        }
-    }
-
-    override fun showArticles(articles: List<Article>) {
-        rvArticlesList.visibility = View.VISIBLE
-        mArticlesInfoAdapter?.setArticlesInfoList(articles)
-    }
-
-    override fun showErrorMessage(title: String, message: String) {
-        AlertDialog.Builder(this)
-            .setTitle(title)
-            .setMessage(message)
-            .setPositiveButton("Ok") { dialog, _ -> dialog.dismiss() }
-            .create()
-            .show()
-    }
-
-    override fun showListEmpty() {
-        rvArticlesList.visibility = View.GONE
-        tvNoArticles.visibility = View.VISIBLE
-    }
-
-    override fun hideListEmpty() {
-        tvNoArticles.visibility = View.GONE
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mPresenter.detachView()
-    }
-
-    override fun getNoConnectionDialogTitle(): String {
-        return getString(R.string.no_connection_dialog_title)
-    }
-
-    override fun getNoConnectionDialogMessage(): String {
-        return getString(R.string.no_connection_dialog_message)
-    }
 }
