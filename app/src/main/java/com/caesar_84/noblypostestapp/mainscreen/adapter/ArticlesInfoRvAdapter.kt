@@ -1,9 +1,9 @@
 package com.caesar_84.noblypostestapp.mainscreen.adapter
 
-import android.support.v7.widget.CardView
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
 import com.caesar_84.noblypostestapp.R
 import com.caesar_84.noblypostestapp.commons.utils.LogHelper.logToConsole
 import com.caesar_84.noblypostestapp.mainscreen.model.entities.Article

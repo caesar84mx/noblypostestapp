@@ -8,8 +8,7 @@ import javax.inject.Singleton
 
 @Component(
     modules = [
-        DataAccessModule::class,
-        MainScreenModule::class
+        DataAccessModule::class
     ]
 )
 @Singleton

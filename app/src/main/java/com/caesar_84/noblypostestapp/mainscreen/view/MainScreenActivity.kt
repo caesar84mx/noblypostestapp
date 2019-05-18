@@ -1,15 +1,15 @@
 package com.caesar_84.noblypostestapp.mainscreen.view
 
-import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.caesar_84.noblypostestapp.R
 import com.caesar_84.noblypostestapp.commons.utils.Constants.Configuration.MainScreen.ANSWER_KEY
 import com.caesar_84.noblypostestapp.databinding.ActivityMainScreenBinding
@@ -30,7 +30,6 @@ class MainScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DataBindingUtil.inflate<>()
         binding = ActivityMainScreenBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(MainScreenViewModel::class.java)
     }

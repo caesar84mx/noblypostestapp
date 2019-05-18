@@ -1,7 +1,7 @@
 package com.caesar_84.noblypostestapp.mainscreen.di
 
-import android.arch.persistence.room.Room
 import android.content.Context
+import androidx.room.Room
 import com.caesar_84.noblypostestapp.mainscreen.model.network.ArticlesApiClient
 import com.caesar_84.noblypostestapp.mainscreen.model.repository.ArticlesCacheRepository
 import com.caesar_84.noblypostestapp.mainscreen.model.repository.ArticlesDao
